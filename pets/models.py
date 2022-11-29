@@ -1,16 +1,27 @@
 from django.db import models
 
-# Create your models here.
+
+class Sex(models.TextChoices):
+    Male = "Male"
+    Female = "Female"
+    Not_Informed = "Not Informed"
+
+
 class Pet(models.Model):
     name = models.CharField(max_length=50)
     age = models.IntegerField()
     weight = models.FloatField()
-    sex = models.CharField(default="Not Informed")
-    # somente dentre as opções Male, Female e Not Informed.
-
-
-# Um grupo (group) pode ter vários pets atrelados a ele,
-# porém um pet somente poderá estar conectado a um grupo.
-
-# Uma característica (trait) pode estar ligada a vários pets
-# assim como um pet pode possuir várias características.
+    sex = models.CharField(
+        max_length=30,
+        choices=Sex.choices,
+        default=Sex.Not_Informed,
+    )
+    group = models.ForeignKey(
+        "groups.Group",
+        on_delete=models.CASCADE,
+        related_name="groups",
+    )
+    traits = models.ManyToManyField(
+        "traits.Trait",
+        related_name="traits",
+    )
