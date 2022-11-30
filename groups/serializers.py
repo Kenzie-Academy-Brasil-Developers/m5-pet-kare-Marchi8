@@ -8,6 +8,11 @@ class GroupSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     scientific_name = serializers.CharField(
         max_length=50,
-        validators=[UniqueValidator(queryset=Group.objects.all())],
+        validators=[
+            UniqueValidator(
+                queryset=Group.objects.all(),
+                message="scientific_name already registered",
+            )
+        ],
     )
     created_at = serializers.DateTimeField(read_only=True)

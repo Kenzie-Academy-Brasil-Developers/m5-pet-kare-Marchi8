@@ -8,6 +8,11 @@ class TraitSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     name = serializers.CharField(
         max_length=20,
-        validators=[UniqueValidator(queryset=Trait.objects.all())],
+        validators=[
+            UniqueValidator(
+                queryset=Trait.objects.all(),
+                message="name already registered",
+            )
+        ],
     )
     created_at = serializers.DateTimeField(read_only=True)
