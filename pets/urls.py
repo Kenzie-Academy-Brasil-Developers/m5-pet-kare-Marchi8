@@ -1,5 +1,4 @@
 from django.urls import path
-
 from pets.views import PetView, PetViewTest
 
 urlpatterns = [
