@@ -35,14 +35,9 @@ source venv/bin/activate
 .\venv\Scripts\activate
 ```
 
-3. Instale o pacote `pytest-testdox`:
+3. Rodar os testes:
 ```shell
-pip install pytest-testdox pytest-django
-```
-
-4. Rodar os testes no diretório principal do projeto:
-```shell
-pytest --testdox -vvs
+python manage.py test
 ```
 
 
